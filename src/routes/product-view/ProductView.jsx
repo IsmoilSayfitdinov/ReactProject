@@ -5,7 +5,8 @@ import './ProductView.scss'
 import Service from '../../components/end_service/Service'
 import { useSelector, useDispatch } from 'react-redux'
 import {FiShoppingCart} from "react-icons/fi"
-import { type } from '@testing-library/user-event/dist/type'
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 const ProductView = () => {
@@ -18,9 +19,7 @@ const ProductView = () => {
 	const currentLangueTranslate = useSelector(
 		state => state.langueageTarnslate.lang
 	)
-	const [isAddCart , setCart] =  useState([])
 
-	console.log(isAddCart);
 
 	useEffect(() => {
 		instance(`/product/single-product/${productId.id}`)
@@ -53,7 +52,7 @@ const ProductView = () => {
 			rest.selectedType = productSizesAndQuantity[selectedVariant]
 			rest.count = itemCounter
 			rest.totalPrice =
-				productsItems.productSizesAndQuantity?.[selectedVariant].price *
+				productsItems?.productSizesAndQuantity?.[selectedVariant].price *
 				itemCounter
 			dispatch({ product: rest, type: '@ADD_TO_CART' })
 		}
@@ -64,7 +63,7 @@ const ProductView = () => {
 				<div className='product__imgs'>
 					<img
 						className='img_items'
-						src={productsItems.productImages?.[activeImageNumber]}
+						src={productsItems?.productImages?.[activeImageNumber]}
 						alt=''
 					/>
 					<div className='img__card-product'>
@@ -88,14 +87,14 @@ const ProductView = () => {
 				<form onSubmit={aaa}>
 					<h1 className='h1__name-produt'>
 						{currentLangueTranslate === 'uz'
-							? productsItems.productName_uz
-							: productsItems.productName_ru}
+							? productsItems?.productName_uz
+							: productsItems?.productName_ru}
 					</h1>
 					<div className='product__catecory-name'>
 						<div className='product__block-title-category'>
 							{currentLangueTranslate === 'uz'
-								? productsItems.productMainCategory_uz
-								: productsItems.productMainCategory_ru}
+								? productsItems?.productMainCategory_uz
+								: productsItems?.productMainCategory_ru}
 						</div>
 						<svg
 							stroke='currentColor'
@@ -112,8 +111,8 @@ const ProductView = () => {
 						</svg>
 						<div className='product__block-title-category'>
 							{currentLangueTranslate === 'uz'
-								? productsItems.productSubCategory_uz
-								: productsItems.productSubCategory_ru}
+								? productsItems?.productSubCategory_uz
+								: productsItems?.productSubCategory_ru}
 						</div>
 					</div>
 					<div className='product__price-size'>
@@ -133,13 +132,13 @@ const ProductView = () => {
 						>
 							{productsItems?.productSizesAndQuantity?.map(
 								(productVariant, ind) => (
-									<option value={ind}>{productVariant?.size}</option>
+									<option key={uuidv4} value={ind}>{productVariant?.size}</option>
 								)
 							)}
 						</select>
 					</div>
 					<h1 className='price'>
-						{productsItems.productSizesAndQuantity?.[selectedVariant].price} СУМ
+						{productsItems?.productSizesAndQuantity?.[selectedVariant].price} СУМ
 					</h1>
 					<div className='main-desc'>
 						<div className='product__descriptin'>
@@ -156,8 +155,8 @@ const ProductView = () => {
 									<path d='M256 56c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m0-48C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 168c-44.183 0-80 35.817-80 80s35.817 80 80 80 80-35.817 80-80-35.817-80-80-80z'></path>
 								</svg>
 								{currentLangueTranslate === 'uz'
-									? productsItems.productDescription_uz?.[0]
-									: productsItems.productDescription_ru?.[0]}
+									? productsItems?.productDescription_uz?.[0]
+									: productsItems?.productDescription_ru?.[0]}
 							</div>
 							<div className='product_items-desc'>
 								<svg
@@ -172,8 +171,8 @@ const ProductView = () => {
 									<path d='M256 56c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m0-48C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 168c-44.183 0-80 35.817-80 80s35.817 80 80 80 80-35.817 80-80-35.817-80-80-80z'></path>
 								</svg>
 								{currentLangueTranslate === 'uz'
-									? productsItems.productDescription_uz?.[1]
-									: productsItems.productDescription_ru?.[1]}
+									? productsItems?.productDescription_uz?.[1]
+									: productsItems?.productDescription_ru?.[1]}
 							</div>
 							<div className='product_items-desc'>
 								<svg
@@ -188,8 +187,8 @@ const ProductView = () => {
 									<path d='M256 56c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m0-48C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 168c-44.183 0-80 35.817-80 80s35.817 80 80 80 80-35.817 80-80-35.817-80-80-80z'></path>
 								</svg>
 								{currentLangueTranslate === 'uz'
-									? productsItems.singleProduct?.[0].productDescription_uz?.[2]
-									: productsItems.singleProduct?.[0].productDescription_ru?.[2]}
+									? productsItems?.singleProduct?.[0].productDescription_uz?.[2]
+									: productsItems?.singleProduct?.[0].productDescription_ru?.[2]}
 							</div>
 						</div>
 					</div>

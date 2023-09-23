@@ -21,7 +21,6 @@ const Mn = () => {
 				.catch(err => console.log(err))
 		}, [idItems?.id])
 
-console.log(isItems);
      
     return (
 			<>

@@ -4,15 +4,21 @@ import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 import "./ProductCard.scss"
 import Mn from '../../routes/maincategory/Mn';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const ProductCard = ({productData}) => {
+
+  const dispatch = useDispatch()
 
   const currentLangueTranslate = useSelector(
 		state => state.langueageTarnslate.lang
 	)
    
+
+	function addTOCART(product) {
+		dispatch({ product, type: '@ADD_TO_CART' })
+	}
 
   return (
 		<div className='product-card'>
@@ -22,7 +28,7 @@ const ProductCard = ({productData}) => {
 			<h3>
 				{currentLangueTranslate === 'uz'
 					? productData.productName_uz
-					: productData.productName_ru }
+					: productData.productName_ru}
 			</h3>
 			<div className='product-card__categories'>
 				<span>
@@ -39,7 +45,11 @@ const ProductCard = ({productData}) => {
 						: ''
 				} CУМ `}
 			</div>
-			<DefaultButton text='Саватга қўшиш' />
+			<div onClick={() => addTOCART(productData)}>
+				<DefaultButton
+					text={currentLangueTranslate === 'uz' ? 'Саватга қўшиш' : 'Дабавиты'}
+				/>
+			</div>
 			<Mn productId={productData} />
 		</div>
 	)

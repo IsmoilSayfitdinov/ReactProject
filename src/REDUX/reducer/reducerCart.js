@@ -6,13 +6,21 @@ const intelsProduct = {
  const reducerCarts = (state = intelsProduct , action) => {
     console.log(action);
     switch (action.type) {
-        case '@ADD_TO_CART':
-            return {
-							cartProduct: [...state.cartProduct, action.product],
-						}
-        default:
-            return state
-    }
+			case '@ADD_TO_CART':
+				return {
+					cartProduct: [...state.cartProduct, action.product],
+				}
+			case '@REMOVE_CART':
+				let remove = state?.cartProduct?.findIndex(
+					removeProduct => removeProduct?.id === action?.id
+				)
+				state.cartProduct.splice(remove, 1)
+				return {
+					cartProduct: [...state.cartProduct],
+				}
+			default:
+				return state
+		}
 }
 
 

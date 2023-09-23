@@ -2,19 +2,24 @@ import React, { useState } from 'react';
 import "./Cart.scss";
 import { BsCart3 } from 'react-icons/bs'
 import {AiOutlineClose} from "react-icons/ai"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {RiDeleteBin6Fill} from "react-icons/ri"
 
 
 const Cart = () => {
     const [isCartOpen, setIsCartOpen] = useState(false);
-    
+    const dispatch = useDispatch()
     const currentLangueTranslate = useSelector(
 			state => state.langueageTarnslate.lang
 		)
 
 	const cartsProductItems = useSelector(state => state.cart.cartProduct)	
      
+   
 
+	function removeTOCArd(productRemove){
+        dispatch({productRemove , type:"@REMOVE_CART"})
+	}
 	console.log(cartsProductItems);
 
   return (
@@ -41,7 +46,8 @@ const Cart = () => {
 					</div>
 					<div className='carts_itesm-view'>
 						{cartsProductItems?.map(viewCarts => (
-							<div className='carts__products'>
+							<div key={viewCarts?._id} className='carts__products'>
+								<div className="delete" onClick={()=> removeTOCArd(viewCarts)}><RiDeleteBin6Fill/></div>
 								<div className='img_cats'>
 									<img src={viewCarts?.productImages} alt='' />
 								</div>
@@ -55,7 +61,8 @@ const Cart = () => {
 									<b className='size__viewCart'>
 										{viewCarts?.selectedType?.size}
 									</b>
-									<div className='card'>
+									<h4 style={{color:"#4361ee",paddingTop:"10px" }} className='pricer_carts'>{viewCarts?.selectedType?.price} СУМ</h4>
+									<div className='cards'>
 										<button>-</button>
 										<p>1</p>
 										<button>+</button>
@@ -69,7 +76,7 @@ const Cart = () => {
 							<h2>
 								{currentLangueTranslate === 'uz' ? 'Cони: 1' : 'Каличество: 1'}
 							</h2>
-							<h1>{cartsProductItems?.[0]?.selectedType.price} СУМ</h1>
+							<h1>{cartsProductItems?.[0]?.selectedType?.price} СУМ</h1>
 							<div className='form__input'>
 							<form action="">
 									<input type='text' placeholder={currentLangueTranslate === "uz" ? "Исмингиз ва Фамилиянгиз" : "Имя и Фамилийа"}/>
