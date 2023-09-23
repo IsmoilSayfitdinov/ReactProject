@@ -1,6 +1,7 @@
 .End{
     margin: auto;
-    width: 1519px;
+    max-width: 1519px;
+    width: 100%;
     height: 770px;
     background-color: #4361EE;
 }
@@ -10,7 +11,7 @@
     border-bottom: 1px solid grey;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
      .block_end{
         align-items: center;
@@ -28,7 +29,7 @@
             font-size: 17px;
             line-height: 30px;
             opacity: .7;
-            width: 357px;
+            width: 100%;
           }
      }
    
@@ -38,13 +39,14 @@
     align-items: center;
     display: flex;
     height: auto;
-    justify-content: center;
+    justify-content: space-between;
+    max-width: 1519px;
     width: 80%;
-    padding-left: 190px;
+    padding-left: 90px;
       .EndText{
         height: 400px;
         padding: 50px 40px 50px 0;
-        width: 33.3%;
+        width: 100%;
          .logoText{
             height: 100px;
              width: 100%;

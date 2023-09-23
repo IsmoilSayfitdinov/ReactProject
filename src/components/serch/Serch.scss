@@ -3,13 +3,14 @@
     display: flex;
     align-items: center;
     position: relative;
+    max-width: 1980px;
+    width: 100%;
         .search {
             height: 250px;
             margin: auto;
             display: flex;
             align-items: center;
-            max-width: 1400px;
-
+            max-width: 1919px;
             .logo {
                 width: 180px;
                 height: 73px;
@@ -58,6 +59,7 @@
             padding-bottom: 20px ;
             margin-top: 30px;
             position: relative;
+            width: 100%;
             .sub__nav-link{
                 color: #4361ee;
                 border-radius: 30px;

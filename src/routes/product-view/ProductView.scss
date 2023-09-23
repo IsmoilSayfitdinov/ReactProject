@@ -129,9 +129,10 @@ select{
     border-radius: 10px;
     display: flex;
     height: 200px;
-    justify-content: space-evenly;
     padding: 0 30px;
     width: 692px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card{
@@ -190,7 +191,11 @@ select{
 .shop__items{
     font-size: 20px;
     font-weight: 700;
+
 }
+
+
+
 
 .aaa{
     display: none;
@@ -199,5 +204,22 @@ select{
 .img__card-product{
     display: flex;
     gap: 0 20px;
+}
+
+.buyTOCart{
+   margin-top: 32px;
+   cursor: pointer;
+     button{
+        cursor: pointer;
+        background-color: #0ab64f;
+        border: none;
+        font-size: 20px;
+        padding: 0 30px;
+        color: #fff;
+        padding: 10px;
+        width: 245px;
+        height: 65px;
+        border-radius: 10px;
+     }
 }
 

@@ -1,4 +1,4 @@
-import React, { useTransition } from 'react'
+import React from 'react'
 import "./Aloqa.scss"
 import { useTranslation } from 'react-i18next'
 

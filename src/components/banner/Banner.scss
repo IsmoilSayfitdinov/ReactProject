@@ -2,7 +2,9 @@
 
 .Slider{
   margin: auto;
-  width: 1519px;
+  max-width: 1496px;
+  width: 100%;
+  margin-left: 200px;
 }
 
 #app {
@@ -24,13 +26,15 @@
   }
   
   .mySwiper {
-    
-    width: 967px;
+    object-position: left;
+    object-fit: cover ;
+    max-width: 929px;
+    width: 100%;
     height: 450px;
-    margin-left: 450px;
     border-radius: 20px;
     svg{
-        width: 967px;
+      max-width: 967px;
+        width: 100%;
         height: 450px;
     }
 

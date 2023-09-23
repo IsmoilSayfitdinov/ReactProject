@@ -6,14 +6,17 @@ import "./Serch.scss";
 import logo from "../../img/svg.svg";
 import Aside from "../saidbar/Saidbar";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 const Search = (productsView) => {
   const {t} = useTranslation()
   const [inputSearch, setInputSearch] = useState("");
   const [searchResult, setSearchResults] = useState([]);
   const [isActive, SetActive] = useState(true)
-
-
+  const currentLangueTranslate = useSelector(
+		state => state.langueageTarnslate.lang
+	)
+  
 
   useEffect(() => {
     instance(`product/search/${inputSearch}`)
@@ -37,81 +40,150 @@ const Search = (productsView) => {
 
 
   return (
-    <div>
-      <div className="search_wrapper">
-          <div className="search">
-            <img className="logo" src={logo} alt="" />
-            <div className="search__group">
-              <div className="input_wrapper">
-                <input type="text" placeholder="Поиск..." value={inputSearch} onChange={e => setInputSearch(e.target.value)}/>
-                <button>
-                  <FiSearch/>
-                </button>
-                {
-                  showNoResult && inputSearch ? (
-                    <div className='no-result'>
-                      <div className={'navbar__search__result'}>
-                        <div className="header__flex">
-                          <div>Қидириш натижалари:</div>
-                          <div className="Navbar_search__indicator">
-                            #{inputSearch}
-                          </div>
-                        </div>
-                        <div className="header__result">
-                          <span>0 Натижа</span>
-                          <div onClick={hideNoResult}>
-                            Отмениты
-                          </div>
-                        </div>
-                      </div>
-                      <div className="images__group">
-                        <img src="https://mold-2.vercel.app/static/media/resultno.66419f6a48c60be00243.png" className={'no-result-images'} alt="No results" />
-                      </div>
-                    </div>
-                  ) : (
-                    searchResult.length > 0 && (
-                      <div className='search__result'>
-                        <div className={'navbar__search__result results'}>
-                          <div className="header__flex">
-                            <div>Қидириш натижалари:</div>
-                            <div className="Navbar_search__indicator">
-                              #{inputSearch}
-                            </div>
-                          </div>
-                          <div className="header__result">
-                            <span>{searchResult.length}  Натижа {searchResult.length !== 1 ? " ": ''}</span>
-                            <div onClick={hideNoResult}>
-                              Бекор қилиш
-                            </div>
-                          </div>
-                        </div>
-                        {searchResult?.map(searchedItem =>
-                          <Link className="search__result_link" to={`/product-view/${searchedItem._id}`}>
-                            <div className={'search__result-item'}>
-                              <img src={searchedItem?.productImages[0]} alt=""/>
-                              <h4>{searchedItem?.productName_ru}</h4>
-                              <strong>{`${searchedItem?.productSizesAndQuantity[0].price} ${searchedItem?.productSizesAndQuantity.length > 1 ? "-" + searchedItem?.productSizesAndQuantity.reverse()[0].price : ""} SUM`}</strong>
-                            </div>
-                          </Link>
-                        )}
-                      </div>
-                    )
-                  )
-                }
-
-              </div>
-              <div className="sub_navigation">
-                {isActive && <Aside />}
-                <Link onClick={()=> SetActive(!false)}  className="sub__nav-link" to="/" >{t("Nav.main")}</Link>
-                <Link onClick={()=> SetActive(!true)} className="sub__nav-link" to="/Parents">{t("Nav.partenorts")}</Link>
-                <Link onClick={()=> SetActive(!true)}  className="sub__nav-link" to="/Aloqa">{t("Nav.Contact")}</Link>
-                <Link onClick={()=> SetActive(!true)} className="sub__nav-link" to="/contact">{t("Nav.About")}</Link>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  );
+		<div>
+			<div className='search_wrapper'>
+				<div className='search'>
+					<img className='logo' src={logo} alt='' />
+					<div className='search__group'>
+						<div className='input_wrapper'>
+							<input
+								type='text'
+								placeholder={
+									currentLangueTranslate === 'uz' ? 'Qidiruv...' : 'Поиск...'
+								}
+								value={inputSearch}
+								onChange={e => setInputSearch(e.target.value)}
+							/>
+							<button>
+								<FiSearch />
+							</button>
+							{showNoResult && inputSearch ? (
+								<div className='no-result'>
+									<div className={'navbar__search__result'}>
+										<div className='header__flex'>
+											<div>
+												{currentLangueTranslate === 'uz'
+													? 'Қидириш натижалари:'
+													: 'Результаты поиска:'}
+											</div>
+											<div className='Navbar_search__indicator'>
+												#{inputSearch}
+											</div>
+										</div>
+										<div className='header__result'>
+											<span>
+												{currentLangueTranslate === 'uz'
+													? '0 Натижа'
+													: '0 Результаты'}
+											</span>
+											<div onClick={hideNoResult}>
+												{currentLangueTranslate === 'uz'
+													? 'Бекор қилиш'
+													: 'отменить'}
+											</div>
+										</div>
+									</div>
+									<div className='images__group'>
+										<img
+											src='https://mold-2.vercel.app/static/media/resultno.66419f6a48c60be00243.png'
+											className={'no-result-images'}
+											alt='No results'
+										/>
+									</div>
+								</div>
+							) : (
+								searchResult.length > 0 && (
+									<div className='search__result'>
+										<div className={'navbar__search__result results'}>
+											<div className='header__flex'>
+												<div>
+													{currentLangueTranslate === 'uz'
+														? 'Қидириш натижалари:'
+														: 'Результаты поиска:'}
+												</div>
+												<div className='Navbar_search__indicator'>
+													#{inputSearch}
+												</div>
+											</div>
+											<div className='header__result'>
+												<span>
+													{searchResult.length}{' '}
+													{currentLangueTranslate === 'uz'
+														? ' Натижа'
+														: ' Результаты'}{' '}
+													{searchResult.length !== 1 ? ' ' : ''}
+												</span>
+												<div onClick={hideNoResult}>
+													{currentLangueTranslate === 'uz'
+														? 'Бекор қилиш'
+														: 'отменить'}
+												</div>
+											</div>
+										</div>
+										{searchResult?.map(searchedItem => (
+											<Link
+												className='search__result_link'
+												to={`/product-view/${searchedItem._id}`}
+											>
+												<div className={'search__result-item'}>
+													<img src={searchedItem?.productImages[0]} alt='' />
+													<h4>
+														{currentLangueTranslate === 'uz'
+															? searchedItem?.productName_uz
+															: searchedItem?.productName_ru}
+													</h4>
+													<strong>{`${
+														searchedItem?.productSizesAndQuantity[0].price
+													} ${
+														searchedItem?.productSizesAndQuantity.length > 1
+															? '-' +
+															  searchedItem?.productSizesAndQuantity.reverse()[0]
+																	.price
+															: ''
+													} CУМ`}</strong>
+												</div>
+											</Link>
+										))}
+									</div>
+								)
+							)}
+						</div>
+						<div className='sub_navigation'>
+							{isActive && <Aside />}
+							<Link
+								onClick={() => SetActive(!false)}
+								className='sub__nav-link'
+								to='/'
+							>
+								{t('Nav.main')}
+							</Link>
+							<Link
+								onClick={() => SetActive(!true)}
+								className='sub__nav-link'
+								to='/Parents'
+							>
+								{t('Nav.partenorts')}
+							</Link>
+							<Link
+								onClick={() => SetActive(!true)}
+								className='sub__nav-link'
+								to='/Aloqa'
+							>
+								{t('Nav.Contact')}
+							</Link>
+							<Link
+								onClick={() => SetActive(!true)}
+								className='sub__nav-link'
+								to='/contact'
+							>
+								{t('Nav.About')}
+							</Link>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 };
 
 export default Search;

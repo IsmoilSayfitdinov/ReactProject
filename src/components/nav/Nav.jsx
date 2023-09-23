@@ -3,17 +3,19 @@ import "./Nav.scss"
 import { BsTelephone } from "react-icons/bs";
 import{ HiOutlineMail } from "react-icons/hi"
 import  i18n  from "../../language/i18next";
-import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+
 
 
 const Nav = () => {
-   
-  const {t} = useTranslation()
-  const [isLang , setLang] = useState("uz")
+  const [isLang , setLang] = useState(localStorage.getItem("lang") || "uz")
+  const dispatch = useDispatch()
+ 
 
    function changeLang(selectedLangCode){
     i18n.changeLanguage(selectedLangCode)
     setLang(selectedLangCode)
+    dispatch({ langProducts: selectedLangCode,  type:"@PRODUCT_LANG"})
    }
 
   return (

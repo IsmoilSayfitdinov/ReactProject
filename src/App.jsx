@@ -9,12 +9,14 @@ import Aloqa from "./routes/aloqa/Aloqa"
 import ProductView from "./routes/product-view/ProductView";
 import Mn from "./routes/maincategory/Mn";
 import Sub from "./routes/subcategor/Sub";
+import Cart from "./components/cart/Cart";
 
 function App() {
   return (
     <div className="container">
       <Nav/>
       <Serch />
+      <Cart/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/Parents" element={<Parents/>} /> 
