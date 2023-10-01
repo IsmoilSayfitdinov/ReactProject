@@ -9,7 +9,7 @@ import ProductCard from '../productCard/ProductCard';
 
 const ProductCarousel = ({categoryData}) => {
   return (
-    <div>
+    <div className='main__swiper'>
        <Swiper
        breakpoints={{
         360: {
@@ -29,7 +29,7 @@ const ProductCarousel = ({categoryData}) => {
           slidesPerView: 3,
         },
       }}
-        slidesPerView={8}
+        slidesPerView={0}
         spaceBetween={10}
         autoplay={{delay: 5000}}
         loop={true}

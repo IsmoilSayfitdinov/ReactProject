@@ -5,6 +5,7 @@ import { FiChevronRight } from 'react-icons/fi';
 import "./ProductCard.scss"
 import Mn from '../../routes/maincategory/Mn';
 import { useDispatch, useSelector } from 'react-redux';
+import {BsHandIndexThumb} from "react-icons/bs"
 
 
 const ProductCard = ({productData}) => {
@@ -17,7 +18,11 @@ const ProductCard = ({productData}) => {
    
 
 	function addTOCART(product) {
-		dispatch({ product, type: '@ADD_TO_CART' })
+			const { productSizesAndQuantity , ...rest} = product
+			rest.productSizesAndQuantity = productSizesAndQuantity.at(0)
+		console.log(product)
+
+		dispatch({ product:rest, type: '@ADD_TO_CART' })
 	}
 
   return (
@@ -45,11 +50,21 @@ const ProductCard = ({productData}) => {
 						: ''
 				} CУМ `}
 			</div>
-			<div onClick={() => addTOCART(productData)}>
-				<DefaultButton
-					text={currentLangueTranslate === 'uz' ? 'Саватга қўшиш' : 'Дабавиты'}
-				/>
-			</div>
+			{productData?.productSizesAndQuantity.length > 1 ? (
+				<Link style={{textDecoration:"none"}} className='default-btn' to={`/product-view/${productData?._id}`}>
+					{' '}
+					<BsHandIndexThumb />{' '}
+					{currentLangueTranslate === 'uz' ? 'Танлаш' : 'Выбрать'}{' '}
+				</Link>
+			) : (
+				<div onClick={() => addTOCART(productData)}>
+					<DefaultButton
+						text={
+							currentLangueTranslate === 'uz' ? 'Саватга қўшиш' : 'Дабавиты'
+						}
+					/>
+				</div>
+			)}
 			<Mn productId={productData} />
 		</div>
 	)

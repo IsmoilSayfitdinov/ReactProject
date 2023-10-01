@@ -19,7 +19,7 @@ const ProductView = () => {
 	const currentLangueTranslate = useSelector(
 		state => state.langueageTarnslate.lang
 	)
-
+	
 
 	useEffect(() => {
 		instance(`/product/single-product/${productId.id}`)
@@ -32,6 +32,7 @@ const ProductView = () => {
 			setItemCounter(itemCounter - 1)
 		}
 	}
+	
 
 	function increment() {
 		if (
@@ -49,7 +50,7 @@ const ProductView = () => {
 
 	 function addToCart(product) {
 			const { productSizesAndQuantity, ...rest } = product
-			rest.selectedType = productSizesAndQuantity[selectedVariant]
+			rest.productSizesAndQuantity = productSizesAndQuantity[selectedVariant]
 			rest.count = itemCounter
 			rest.totalPrice =
 				productsItems?.productSizesAndQuantity?.[selectedVariant].price *
@@ -132,13 +133,16 @@ const ProductView = () => {
 						>
 							{productsItems?.productSizesAndQuantity?.map(
 								(productVariant, ind) => (
-									<option key={uuidv4} value={ind}>{productVariant?.size}</option>
+									<option key={uuidv4} value={ind}>
+										{productVariant?.size}
+									</option>
 								)
 							)}
 						</select>
 					</div>
 					<h1 className='price'>
-						{productsItems?.productSizesAndQuantity?.[selectedVariant].price} СУМ
+						{productsItems?.productSizesAndQuantity?.[selectedVariant].price}{' '}
+						СУМ
 					</h1>
 					<div className='main-desc'>
 						<div className='product__descriptin'>
@@ -188,7 +192,8 @@ const ProductView = () => {
 								</svg>
 								{currentLangueTranslate === 'uz'
 									? productsItems?.singleProduct?.[0].productDescription_uz?.[2]
-									: productsItems?.singleProduct?.[0].productDescription_ru?.[2]}
+									: productsItems?.singleProduct?.[0]
+											.productDescription_ru?.[2]}
 							</div>
 						</div>
 					</div>
@@ -219,8 +224,15 @@ const ProductView = () => {
 								</div>
 							</div>
 						</div>
-						<div className='buyTOCart'>
-							<button onClick={() => addToCart(productsItems)} style={{cursor:"pointer"}}>
+						<div
+							className='buyTOCart'
+							onClick={() => addToCart(productsItems)}
+							style={{ cursor: 'pointer' }}
+						>
+							<button
+								onClick={() => addToCart(productsItems)}
+								style={{ cursor: 'pointer' }}
+							>
 								<FiShoppingCart />{' '}
 								{currentLangueTranslate === 'uz' ? 'Саватга қўшиш' : ' Купиты'}
 							</button>

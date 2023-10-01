@@ -2,12 +2,16 @@ import React from 'react'
 import "./End.scss"
 import svgLogo from "../../img/svg4.svg"
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
+const delet = ['/login' , "/admin"]
 
 const End = () => {
  
   const {t} = useTranslation()
+  const location = useLocation()
 
-  return (
+
+  return delet.includes(location.pathname) ? (<></>) : (
     <div className='End'>
        <div className="End_block">
            <div className="block_end">

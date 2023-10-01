@@ -10,6 +10,9 @@ import ProductView from "./routes/product-view/ProductView";
 import Mn from "./routes/maincategory/Mn";
 import Sub from "./routes/subcategor/Sub";
 import Cart from "./components/cart/Cart";
+import Login from "./routes/login/Login";
+import Private from "./routes/private/Private";
+import Admin from "./routes/admin/Admin";
 
 function App() {
   return (
@@ -21,7 +24,11 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/Parents" element={<Parents/>} /> 
         <Route path="/contact" element={<Contact/>} />
+        <Route path="login" element={<Login/>}/>
         <Route path='/Aloqa' element={<Aloqa/>}/>
+        <Route path="/" element={<Private/>}>
+           <Route path="/admin" element={<Admin/>}/>
+        </Route>
         <Route path='/product-view/:id' element={<ProductView/>}/>
         <Route path='/maincategory/:id' element={<Mn/>}/>
         <Route path="/subcategory/:id" element={<Sub/>}/>

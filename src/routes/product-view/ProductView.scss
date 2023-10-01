@@ -6,6 +6,7 @@
         margin-top: 60px;
         margin-left: 30px;
          width:909px;
+         padding-right: 30px;
          height: 752px;
           h1{
               font-size: 35px;
@@ -130,7 +131,8 @@ select{
     display: flex;
     height: 200px;
     padding: 0 30px;
-    width: 692px;
+    max-width: 692px;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
 }

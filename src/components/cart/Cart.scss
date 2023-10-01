@@ -1,11 +1,9 @@
 .main_cart {
-	position: fixed;
-	z-index: 10;
+	position: absolute;
 	height: 100vh;
 	overflow-y: hidden;
-	width: 100vw;
+	z-index: 10;
 }
-
 .cart {
 	background-color: #f7f7f7;
 	height: auto;
@@ -99,14 +97,18 @@
 	border: 2px solid dodgerblue;
 	border-radius: 10px;
 	margin-bottom: 20px;
-	max-height: 50vh;
 	padding-bottom: 20px;
 	width: 100%;
 	padding-right:10px;
 	padding-left: 10px;
+	height: 40vh;
 }
 
 .img_cats {
+   border-bottom: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+   border-top: 1px solid #ccc;
+	border-radius: 10px;
 	max-width: 120px;
 	width: 100%;
 	img {
@@ -127,6 +129,7 @@
 }
 
 .text__carts{
+	margin-top: 20px;
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -155,7 +158,6 @@ span{
     padding: 5px 10px;
     white-space: nowrap;
     height: 30px;
-
 }
 
 .messege__cart{
@@ -247,9 +249,7 @@ span{
      }
 }
 .pricer_carts{
-  left: 0;
-  top: 40px;
-  position: absolute;
+	position: absolute;
   font-size: 28px;
   font-weight: 600;
 }
@@ -267,4 +267,19 @@ span{
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.length__product{
+	color: #fff;
+	background-color:#4361ee;
+	width: 20px;
+	position: absolute;
+	height: 20px;
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100px;
+	left: 45px;
+    bottom: 50px;
 }

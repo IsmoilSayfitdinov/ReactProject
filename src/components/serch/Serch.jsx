@@ -1,18 +1,17 @@
 import { useState, useEffect, } from "react";
 import { instance } from '../../api/axios';
 import { FiSearch } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Serch.scss";
 import logo from "../../img/svg.svg";
-import Aside from "../saidbar/Saidbar";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+const delet = ["/login", "/admin"]
 
 const Search = (productsView) => {
   const {t} = useTranslation()
   const [inputSearch, setInputSearch] = useState("");
   const [searchResult, setSearchResults] = useState([]);
-  const [isActive, SetActive] = useState(true)
   const currentLangueTranslate = useSelector(
 		state => state.langueageTarnslate.lang
 	)
@@ -38,8 +37,8 @@ const Search = (productsView) => {
     setInputSearch("")
   };
 
-
-  return (
+   const location = useLocation()
+  return delet.includes(location.pathname) ? (<></>) : (
 		<div>
 			<div className='search_wrapper'>
 				<div className='search'>
@@ -149,30 +148,25 @@ const Search = (productsView) => {
 							)}
 						</div>
 						<div className='sub_navigation'>
-							{isActive && <Aside />}
 							<Link
-								onClick={() => SetActive(!false)}
 								className='sub__nav-link'
 								to='/'
 							>
 								{t('Nav.main')}
 							</Link>
 							<Link
-								onClick={() => SetActive(!true)}
 								className='sub__nav-link'
 								to='/Parents'
 							>
 								{t('Nav.partenorts')}
 							</Link>
 							<Link
-								onClick={() => SetActive(!true)}
 								className='sub__nav-link'
 								to='/Aloqa'
 							>
 								{t('Nav.Contact')}
 							</Link>
 							<Link
-								onClick={() => SetActive(!true)}
 								className='sub__nav-link'
 								to='/contact'
 							>

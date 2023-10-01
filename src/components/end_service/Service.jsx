@@ -7,7 +7,7 @@ const Service = () => {
   const {t} = useTranslation()
 
   return (
-    <div className="service">
+    <div className="service" style={{margin:"auto" , marginTop:"50px"}}>
         <div className="text_Service">
              <h2>{t("endService.h2")}</h2>
         </div>

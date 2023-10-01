@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import { Navigation, Autoplay, Pagination } from 'swiper/modules';
 import svg from "../../img/svg2.svg"
 import svg2 from "../../img/svg3.svg"
+import Aside from '../saidbar/Saidbar';
 
 
 
@@ -16,6 +17,7 @@ const Banner = () => {
     
     return (
        <div className='Slider'>
+        <Aside/>
          <Swiper
           modules={[Autoplay, Navigation, Pagination]}
           navigation={true}
